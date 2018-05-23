@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DIAS-airtel.iml" filepath="$PROJECT_DIR$/.idea/modules/DIAS-airtel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DIAS-airtel_main.iml" filepath="$PROJECT_DIR$/.idea/modules/DIAS-airtel_main.iml" group="DIAS-airtel" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DIAS-airtel_test.iml" filepath="$PROJECT_DIR$/.idea/modules/DIAS-airtel_test.iml" group="DIAS-airtel" />
+    </modules>
+  </component>
+</project>

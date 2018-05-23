@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - dias@localhost" uuid="8fb75a84-8fea-4bad-842b-fbeddcd2b6c7">
+    <database-info product="MySQL" version="5.7.20-0ubuntu0.17.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.44 ( Revision: b3cda4f864902ffdde495b9df93937c3e20009be )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+      <schema id="1" name="dias"/>
+      <table id="2" parent="1" name="device"/>
+      <table id="3" parent="1" name="device_ip_allocated"/>
+      <table id="4" parent="1" name="ip_table"/>
+      <column id="5" parent="2" name="id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="6" parent="2" name="created_by">
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="7" parent="2" name="date_created">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="8" parent="2" name="status">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="9" parent="2" name="last_updated">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="10" parent="2" name="updated_by">
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="11" parent="2" name="mac_address">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="12" parent="2" name="model">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="13" parent="2" name="name">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="14" parent="2" name="UK_ed0whthw3o1kq0vu1bhs9s60">
+        <columns>mac_address</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="15" parent="2" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="16" parent="2" name="UK_ed0whthw3o1kq0vu1bhs9s60">
+        <columns>mac_address</columns>
+        <underlying-index>UK_ed0whthw3o1kq0vu1bhs9s60</underlying-index>
+      </key>
+      <column id="17" parent="3" name="id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="18" parent="3" name="created_by">
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="19" parent="3" name="date_created">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="20" parent="3" name="status">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="21" parent="3" name="last_updated">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="22" parent="3" name="updated_by">
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="23" parent="3" name="allocated_ip">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="24" parent="3" name="time_of_allotment">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="25" parent="3" name="validity_period">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="26" parent="3" name="device_id">
+        <data-type>bigint(20)</data-type>
+      </column>
+      <index id="27" parent="3" name="FKfbw7log6y9vsgmjloeo7ju49q">
+        <columns>device_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="28" parent="3" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="29" parent="3" name="FKfbw7log6y9vsgmjloeo7ju49q">
+        <columns>device_id</columns>
+        <ref-key>~.device.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="30" parent="4" name="id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="31" parent="4" name="created_by">
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="32" parent="4" name="date_created">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="33" parent="4" name="status">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="34" parent="4" name="last_updated">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="35" parent="4" name="updated_by">
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="36" parent="4" name="ip">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <key id="37" parent="4" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>

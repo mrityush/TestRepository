@@ -1,0 +1,32 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtime('mysql:mysql-connector-java:5.1.6')
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile group: 'org.modelmapper', name: 'modelmapper', version: '1.1.1'
+}

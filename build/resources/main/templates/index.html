@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello World</title>
+</head>
+<body>
+<h3>This is a IP range definition page.</h3>
+<div id="messageContainer"></div>
+<form>
+    <table>
+        <thead>
+        <tr>
+            <td>Section</td>
+            <td>Lower Range</td>
+            <td>Upper Range</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td><input type="number" name="lower_1"/></td>
+            <td><input type="number" name="upper_1"/></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><input type="number" name="lower_2"/></td>
+            <td><input type="number" name="upper_2"/></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><input type="number" name="lower_3"/></td>
+            <td><input type="number" name="upper_3"/></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><input type="number" name="lower_4"/></td>
+            <td><input type="number" name="upper_4"/></td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="button" id="submitBtn">Submit</button>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function () {
+        $("#submitBtn").on("click", function (evt) {
+            console.log("-----");
+            function getObjFromInputs() {
+                var ipRangeObjArr = [];
+
+                function validateEntries(rowNuber, valuePassed, event) {
+                    if (valuePassed < 0) {
+                        showErrorMessage("Value passed is less than 0. Cancelled request");
+                        //can add on here using stuling
+                        event.preventDefault();
+                    }
+                    if (valuePassed > 255) {
+                        showErrorMessage("Value passed is more than 255. Cancelled request");
+                        event.preventDefault();
+                    }
+                }
+
+                for (var i = 1; i <= 4; i++) {
+                    var lowerLimit = $("#lower_" + i).val();
+                    var upperLimit = $("#upper_" + i).val();
+                    if (lowerLimit === undefined || lowerLimit == null) lowerLimit = 0;
+                    if (upperLimit === undefined || upperLimit == null) upperLimit = 255;
+                    var tmpObj = {};
+                    tmpObj["lowerLimit"] = lowerLimit;
+                    tmpObj["upperLimit"] = upperLimit;
+                    validateEntries(i, lowerLimit, evt);
+                    validateEntries(i, upperLimit, evt);
+                    ipRangeObjArr.push(tmpObj);
+                }
+                return ipRangeObjArr;
+            }
+
+            var ipRangeObj = getObjFromInputs();
+            var dataObj = {"rangePairs": ipRangeObj};
+            $.ajax({
+                url: "/ip/range",
+                dataType: "JSON",
+                type: "POST",
+                contentType: 'application/json',
+                data: JSON.stringify(dataObj),
+                success: function (result) {
+                    $("#messageContainer").html(result.message);
+                },
+                error: function (result) {
+                    $("#messageContainer").html(result.message);
+                }
+            });
+        });
+    });
+    /*]]>*/
+</script>
+</body>
+</html>

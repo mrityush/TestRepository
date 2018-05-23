@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Mvc Example</title>
+</head>
+<body>
+<h3>This page shows the model passed.</h3>
+<div>
+    <span>
+        <p th:text="${model.object1.value} + ' is the value passed first time'"></p>
+        <p th:text="${model.object2.value} + ' is the value passed second time.'"></p>
+    </span>
+</div>
+</body>
+</html>

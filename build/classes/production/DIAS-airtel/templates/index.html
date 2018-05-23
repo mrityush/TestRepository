@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello World</title>
+</head>
+<body>
+<h3>This is a IP range definition page.</h3>
+<div id="messageContainer"></div>
+<form>
+    <table>
+        <thead>
+        <tr>
+            <td>Section</td>
+            <td>Lower Range</td>
+            <td>Upper Range</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td><input type="number" name="lower_1"/></td>
+            <td><input type="number" name="upper_1"/></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><input type="number" name="lower_2"/></td>
+            <td><input type="number" name="upper_2"/></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><input type="number" name="lower_3"/></td>
+            <td><input type="number" name="upper_3"/></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><input type="number" name="lower_4"/></td>
+            <td><input type="number" name="upper_4"/></td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="button" id="submitBtn">Submit</button>
+</form>
+<script  th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function () {
+        $("#submitBtn").on("click", function () {
+            console.log("-----");
+            function getObjFromInputs() {
+                var ipRangeObjArr = {};
+                for (var i = 1; i <= 4; i++) {
+                    var lowerLimit = $("#lower_" + i).val();
+                    var upperLimit = $("#upper_" + i).val();
+                    if (lowerLimit === undefined || lowerLimit == null) lowerLimit = 0;
+                    if (upperLimit === undefined || upperLimit == null) upperLimit = 255;
+                    var tmpObj = {};
+                    tmpObj["lowerLimit"] = lowerLimit;
+                    tmpObj["upperLimit"] = upperLimit;
+                    ipRangeObjArr.push(tmpObj);
+                }
+                return ipRangeObjArr;
+            }
+
+            var ipRangeObj = getObjFromInputs();
+            $.ajax({
+                url: "/ip/range",
+                dataType: "JSON",
+                data: JSON.stringify(ipRangeObj),
+                success: function (result) {
+                    $("#messageContainer").html(result.message);
+                },
+                error: function (result) {
+                    $("#messageContainer").html(result.message);
+                }
+            });
+        });
+    });
+    /*]]>*/
+</script>
+</body>
+</html>
